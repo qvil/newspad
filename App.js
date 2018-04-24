@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, FlatList, View, ActivityIndicator } from "react-native";
 import Article from "components/Article";
 import { getNews } from "lib/news";
 
@@ -19,16 +19,28 @@ export default class App extends React.Component {
       .catch(() => this.setState({ refreshing: false }));
   };
 
+  handleRefresh = () => {
+    this.setState({ refreshing: true }, () => this.fetchNews());
+  };
+
   render() {
     const { articles, refreshing } = this.state;
+    const { handleRefresh } = this;
 
     console.log(articles);
     return (
       <View style={styles.container}>
         {refreshing ? <ActivityIndicator size="large" /> : null}
-        {articles.map(article => (
+        <FlatList
+          data={articles}
+          renderItem={({ item }) => <Article article={item} />}
+          keyExtractor={item => item.url}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+        {/* {articles.map(article => (
           <Article key={article.title} title={article.title} />
-        ))}
+        ))} */}
         {/* <Article /> */}
       </View>
     );

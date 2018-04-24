@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import Data from "components/Data";
+import Article from "components/Article";
 import { getNews } from "lib/news";
 
 export default class App extends React.Component {
@@ -22,13 +22,14 @@ export default class App extends React.Component {
   render() {
     const { articles, refreshing } = this.state;
 
-    console.warn(articles);
-
+    console.log(articles);
     return (
       <View style={styles.container}>
         {refreshing ? <ActivityIndicator size="large" /> : null}
-        {/* <Data /> */}
-        {/* <Text>{API_KEY}</Text> */}
+        {articles.map(article => (
+          <Article key={article.title} title={article.title} />
+        ))}
+        {/* <Article /> */}
       </View>
     );
   }

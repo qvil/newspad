@@ -1,14 +1,15 @@
 import React from "react";
 import { Text } from "react-native";
 
-class Data extends React.Component {
+class Article extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <Text>Data</Text>;
+    const { title } = this.props;
+    return <Text>{title}</Text>;
   }
 }
 
-export default Data;
+export default Article;

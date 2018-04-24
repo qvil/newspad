@@ -1,14 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import Data from "components/Data";
-import { API_KEY } from "lib/news";
+import { getNews } from "lib/news";
 
 export default class App extends React.Component {
+  state = {
+    articles: [],
+    refreshing: true
+  };
+
+  componentDidMount() {
+    this.fetchNews();
+  }
+
+  fetchNews = () => {
+    getNews()
+      .then(articles => this.setState({ articles, refreshing: false }))
+      .catch(() => this.setState({ refreshing: false }));
+  };
+
   render() {
+    const { articles, refreshing } = this.state;
+
+    console.warn(articles);
+
     return (
       <View style={styles.container}>
-        <Data />
-        <Text>{API_KEY}</Text>
+        {refreshing ? <ActivityIndicator size="large" /> : null}
+        {/* <Data /> */}
+        {/* <Text>{API_KEY}</Text> */}
       </View>
     );
   }

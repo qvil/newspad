@@ -1,6 +1,6 @@
 # [News Pad](https://github.com/qvil/newspad)
 
-News Pad App created by react-native
+Mobile News App created by react-native
 
 API Reference : https://newsapi.org/
 

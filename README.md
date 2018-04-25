@@ -1,4 +1,4 @@
-# [News Pad](https://github.com/qvil/newspad)
+# [React Native News](https://github.com/qvil/react-native-news)
 
 Mobile News App created by react-native
 
@@ -19,7 +19,7 @@ npm install
 ## Prerequisite
 
 * [Expo](https://expo.io/)
-* /config/config.json (It is not managed by git, Get your API Key https://newsapi.org/)
+* /src/config/config.json (It is not managed by git, Get your API Key https://newsapi.org/)
 
 ```json
 {
@@ -31,6 +31,6 @@ npm install
 npm start
 ```
 
-# [License](https://github.com/qvil/newspad/blob/master/LICENSE)
+# [License](https://github.com/qvil/react-native-news/blob/master/LICENSE)
 
 MIT

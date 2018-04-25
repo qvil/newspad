@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Linking,
-  TouchableNativeFeedback
+  // TouchableNativeFeedback,
+  TouchableOpacity
 } from "react-native";
 import { Text, Button, Card, Divider } from "react-native-elements";
 import moment from "moment";
@@ -33,22 +34,26 @@ export default class Article extends React.Component {
       //   useForeground
       //   onPress={() => Linking.openURL(url)}
       // >
-      <Card
-        featuredTitle={title}
-        featuredTitleStyle={featuredTitleStyle}
-        image={{
-          uri: urlToImage || defaultImg
-        }}
-      >
-        <Text style={{ marginBottom: 10 }}>
-          {description || "Read More..."}
-        </Text>
-        <Divider style={{ backgroundColor: "#dfe6e9" }} />
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={noteStyle}>{source.name.toUpperCase()}</Text>
-          <Text style={noteStyle}>{time}</Text>
-        </View>
-      </Card>
+      <TouchableOpacity onPress={() => Linking.openURL(url)}>
+        <Card
+          featuredTitle={title}
+          featuredTitleStyle={featuredTitleStyle}
+          image={{
+            uri: urlToImage || defaultImg
+          }}
+        >
+          <Text style={{ marginBottom: 10 }}>
+            {description || "Read More..."}
+          </Text>
+          <Divider style={{ backgroundColor: "#dfe6e9" }} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={noteStyle}>{source.name.toUpperCase()}</Text>
+            <Text style={noteStyle}>{time}</Text>
+          </View>
+        </Card>
+      </TouchableOpacity>
       // </TouchableNativeFeedback>
     );
   }

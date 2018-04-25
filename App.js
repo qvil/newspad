@@ -30,7 +30,7 @@ export default class App extends React.Component {
     console.log(articles);
     return (
       <View style={styles.container}>
-        {refreshing ? <ActivityIndicator size="large" /> : null}
+        {/* {refreshing ? <ActivityIndicator size="large" /> : null} */}
         <FlatList
           data={articles}
           renderItem={({ item }) => <Article article={item} />}
@@ -38,10 +38,6 @@ export default class App extends React.Component {
           refreshing={refreshing}
           onRefresh={handleRefresh}
         />
-        {/* {articles.map(article => (
-          <Article key={article.title} title={article.title} />
-        ))} */}
-        {/* <Article /> */}
       </View>
     );
   }
@@ -50,6 +46,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 20,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"

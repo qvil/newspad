@@ -16,6 +16,10 @@ npm install
 
 # Run
 
+```
+npm start
+```
+
 ## Prerequisite
 
 * [Expo](https://expo.io/)
@@ -25,10 +29,6 @@ npm install
 {
   "apiKey": "YOUR_API_KEY"
 }
-```
-
-```
-npm start
 ```
 
 # [License](https://github.com/qvil/react-native-news/blob/master/LICENSE)

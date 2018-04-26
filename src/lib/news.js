@@ -10,6 +10,7 @@ export async function getNews() {
     articles = null;
     return result.articles;
   } catch (error) {
-    throw error;
+    // throw error; // What the..?
+    console.error(error);
   }
 }

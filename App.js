@@ -6,17 +6,21 @@ import { getNews } from "lib/news";
 export default class App extends React.Component {
   state = {
     articles: [],
+    isLoadded: false,
     refreshing: true
   };
 
   componentDidMount() {
-    this.fetchNews();
+    // this.fetchNews(); // Original
+    setTimeout(() => this.fetchNews(), 1000); // Loading Test
   }
 
   fetchNews = () => {
     getNews()
-      .then(articles => this.setState({ articles, refreshing: false }))
-      .catch(() => this.setState({ refreshing: false }));
+      .then(articles =>
+        this.setState({ articles, refreshing: false, isLoadded: true })
+      )
+      .catch(() => this.setState({ refreshing: false, isLoadded: true }));
   };
 
   handleRefresh = () => {
@@ -24,20 +28,22 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { articles, refreshing } = this.state;
+    const { articles, refreshing, isLoadded } = this.state;
     const { handleRefresh } = this;
 
-    console.log(articles);
     return (
       <View style={styles.container}>
-        {/* {refreshing ? <ActivityIndicator size="large" /> : null} */}
-        <FlatList
-          data={articles}
-          renderItem={({ item }) => <Article article={item} />}
-          keyExtractor={item => item.url}
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
-        />
+        {!isLoadded ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <FlatList
+            data={articles}
+            renderItem={({ item }) => <Article article={item} />}
+            keyExtractor={item => item.url}
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
+          />
+        )}
       </View>
     );
   }
@@ -46,7 +52,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 30,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"

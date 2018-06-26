@@ -20,4 +20,4 @@ yarn-error.log*
 .vscode
 
 # custom
-config.json
+# config.json # Hotfix for demo
